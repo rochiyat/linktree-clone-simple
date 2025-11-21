@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { LinkIcon } from '@/components/link-icon';
+import { ViewCounter } from '@/components/view-counter';
 import styles from '../linktree.module.css';
 
 async function getUserByUsername(username: string) {
@@ -34,6 +35,7 @@ export default async function PublicProfilePage({
 
   return (
     <div className={styles.container}>
+      <ViewCounter username={params.username} />
       <div className={styles.wrapper}>
         {/* Back Button */}
         <div className="mb-4">

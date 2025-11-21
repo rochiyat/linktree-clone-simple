@@ -21,6 +21,7 @@ export async function GET() {
         username: true,
         bio: true,
         image: true,
+        profileViews: true,
       },
     });
 
@@ -61,6 +62,7 @@ export async function PATCH(request: Request) {
         username: true,
         bio: true,
         image: true,
+        profileViews: true,
       },
     });
 

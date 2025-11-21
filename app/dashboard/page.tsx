@@ -69,6 +69,7 @@ interface Profile {
   username: string;
   bio: string | null;
   image: string | null;
+  profileViews: number;
 }
 
 export default function DashboardPage() {
@@ -363,7 +364,9 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Profile Views</p>
-                  <p className="text-3xl font-bold">-</p>
+                  <p className="text-3xl font-bold">
+                    {profile?.profileViews || 0}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                   <Sparkles className="w-6 h-6 text-blue-600" />
