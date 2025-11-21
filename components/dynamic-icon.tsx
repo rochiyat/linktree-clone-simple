@@ -1,28 +1,47 @@
 'use client';
 
-import * as LucideIcons from 'lucide-react';
+import { icons } from 'lucide-react';
 import { LucideProps } from 'lucide-react';
-import { createElement } from 'react';
 
 interface DynamicIconProps extends Omit<LucideProps, 'ref'> {
   name: string;
 }
 
+// Helper function to convert to PascalCase
+function toPascalCase(str: string): string {
+  return str
+    .split(/[-_\s]/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('');
+}
+
 export function DynamicIcon({ name, ...props }: DynamicIconProps) {
   // Ensure name is valid
   if (!name || typeof name !== 'string') {
-    return <LucideIcons.Link {...props} />;
+    const LucideLink = icons.Link;
+    return <LucideLink {...props} />;
   }
 
-  // Get the icon component from lucide-react
-  const IconComponent = (LucideIcons as Record<string, any>)[name];
+  // Convert to PascalCase for case-insensitive matching
+  const pascalName = toPascalCase(name);
 
-  // If icon doesn't exist, return default Link icon
-  if (!IconComponent || typeof IconComponent !== 'function') {
-    console.warn(`Icon "${name}" not found in lucide-react, using fallback`);
-    return <LucideIcons.Link {...props} />;
+  // Try to get the icon from lucide-react icons object
+  let LucideIcon = icons[pascalName as keyof typeof icons];
+
+  // If not found, try the original name
+  if (!LucideIcon) {
+    LucideIcon = icons[name as keyof typeof icons];
   }
 
-  // Create element with the icon component
-  return createElement(IconComponent, props);
+  // If still not found, return default Link icon
+  if (!LucideIcon) {
+    console.warn(
+      `Icon "${name}" (tried as "${pascalName}") not found in lucide-react, using fallback Link icon`
+    );
+    const LucideLink = icons.Link;
+    return <LucideLink {...props} />;
+  }
+
+  // Render the icon
+  return <LucideIcon {...props} />;
 }
