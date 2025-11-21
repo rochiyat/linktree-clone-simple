@@ -11,8 +11,15 @@ export function ViewCounter({ username }: ViewCounterProps) {
     // Increment view count
     const incrementView = async () => {
       try {
+        // Get token from localStorage
+        const token = localStorage.getItem('token');
+
         await fetch(`/api/profile/${username}/views`, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token && { Authorization: `Bearer ${token}` }),
+          },
         });
       } catch (error) {
         console.error('Failed to increment view:', error);

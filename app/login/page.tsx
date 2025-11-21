@@ -46,6 +46,17 @@ export default function LoginPage() {
       if (result?.error) {
         toast.error('Invalid email or password');
       } else {
+        // Get JWT token and store in localStorage
+        try {
+          const tokenResponse = await fetch('/api/auth/token');
+          if (tokenResponse.ok) {
+            const { token } = await tokenResponse.json();
+            localStorage.setItem('token', token);
+          }
+        } catch (error) {
+          console.error('Failed to get token:', error);
+        }
+
         toast.success('Login successful!');
         router.push('/dashboard');
         router.refresh();

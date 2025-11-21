@@ -316,7 +316,10 @@ export default function DashboardPage() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => signOut({ callbackUrl: '/' })}
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  signOut({ callbackUrl: '/' });
+                }}
                 className="text-red-600 hover:text-red-700 hover:bg-red-50"
               >
                 <LogOut className="w-4 h-4 sm:mr-2" />
