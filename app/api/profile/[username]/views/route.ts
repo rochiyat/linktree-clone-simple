@@ -4,9 +4,11 @@ import { verifyToken } from '@/lib/jwt';
 
 export async function POST(
   request: Request,
-  { params }: { params: { username: string } }
+  { params }: { params: Promise<{ username: string }> }
 ) {
   try {
+    const { username } = await params;
+
     // Get token from Authorization header
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.replace('Bearer ', '');
@@ -16,7 +18,7 @@ export async function POST(
       const decoded = verifyToken(token);
 
       // If token is valid and belongs to the profile owner, don't increment views
-      if (decoded && decoded.username === params.username) {
+      if (decoded && decoded.username === username) {
         return NextResponse.json({
           message: 'View not counted for profile owner',
           views: null,
@@ -27,7 +29,7 @@ export async function POST(
     // Increment view count for non-owners or users without valid token
     const user = await prisma.user.update({
       where: {
-        username: params.username,
+        username,
       },
       data: {
         profileViews: {

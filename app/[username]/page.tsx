@@ -25,9 +25,10 @@ async function getUserByUsername(username: string) {
 export default async function PublicProfilePage({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
-  const user = await getUserByUsername(params.username);
+  const { username } = await params;
+  const user = await getUserByUsername(username);
 
   if (!user) {
     notFound();
@@ -35,7 +36,7 @@ export default async function PublicProfilePage({
 
   return (
     <div className={styles.container}>
-      <ViewCounter username={params.username} />
+      <ViewCounter username={username} />
       <div className={styles.wrapper}>
         {/* Back Button */}
         <div className="mb-4">
@@ -114,9 +115,10 @@ export default async function PublicProfilePage({
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
-  const user = await getUserByUsername(params.username);
+  const { username } = await params;
+  const user = await getUserByUsername(username);
 
   if (!user) {
     return {

@@ -5,9 +5,10 @@ import { prisma } from '@/lib/prisma';
 // UPDATE link
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session?.user) {
@@ -19,7 +20,7 @@ export async function PATCH(
 
     // Verify link belongs to user
     const existingLink = await prisma.link.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingLink || existingLink.userId !== (session.user as any).id) {
@@ -27,7 +28,7 @@ export async function PATCH(
     }
 
     const link = await prisma.link.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(title !== undefined && { title }),
         ...(url !== undefined && { url }),
@@ -52,9 +53,10 @@ export async function PATCH(
 // DELETE link
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session?.user) {
@@ -63,7 +65,7 @@ export async function DELETE(
 
     // Verify link belongs to user
     const existingLink = await prisma.link.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingLink || existingLink.userId !== (session.user as any).id) {
@@ -71,7 +73,7 @@ export async function DELETE(
     }
 
     await prisma.link.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Link deleted' });
