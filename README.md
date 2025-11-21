@@ -159,10 +159,18 @@ npm start
 2. Choose a unique username (this will be your profile URL)
 3. Login at `/login`
 
-### 2. Manage Your Links (Dashboard)
+### 2. Manage Your Profile (Dashboard)
 
 Access your dashboard at `/dashboard`:
 
+**Profile Management:**
+- **Edit Name**: Update your display name
+- **Edit Bio**: Add a description about yourself
+- **Upload Picture**: Add profile picture via URL
+- **Change Picture**: Update your profile picture anytime
+- **Remove Picture**: Remove picture to use default avatar
+
+**Link Management:**
 - **Add Links**: Click "Add Link" button
 - **Edit Links**: Click the pencil icon on any link
 - **Delete Links**: Click the trash icon
@@ -276,12 +284,16 @@ linktree-clone-simple/
 
 - [Quick Start Guide](QUICK_START.md) - Get started in 5 minutes
 - [Database Setup](DATABASE_SETUP.md) - Detailed database configuration
+- [Profile Management](PROFILE_MANAGEMENT.md) - Manage your profile & picture
+- [Icon Guide](ICON_GUIDE.md) - Using Lucide Icons in links
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
 - [Features Documentation](FEATURES.md) - Complete feature list
 - [API Documentation](API_DOCUMENTATION.md) - Complete API reference
 - [Deployment Guide](DEPLOYMENT.md) - Deploy to production
 - [Contributing Guide](CONTRIBUTING.md) - How to contribute
 - [Security Policy](SECURITY.md) - Security guidelines
 - [Project Summary](PROJECT_SUMMARY.md) - Technical overview
+- [NextAuth v5 Migration](NEXTAUTH_V5_MIGRATION.md) - Auth migration notes
 
 ---
 

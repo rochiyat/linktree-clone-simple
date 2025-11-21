@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
+import { LinkIcon } from '@/components/link-icon';
 import styles from '../linktree.module.css';
 
 async function getUserByUsername(username: string) {
@@ -32,6 +35,16 @@ export default async function PublicProfilePage({
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
+        {/* Back Button */}
+        <div className="mb-4">
+          <Link href="/dashboard">
+            <Button variant="ghost" size="sm">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+
         {/* Profile Section */}
         <div className={styles.profileSection}>
           <Avatar className={styles.avatar}>
@@ -68,7 +81,7 @@ export default async function PublicProfilePage({
                         <div
                           className={`${styles.linkIcon} ${styles[link.color]}`}
                         >
-                          <ExternalLink className="w-5 h-5" />
+                          <LinkIcon iconName={link.icon} className="w-5 h-5" />
                         </div>
                         <div className={styles.linkText}>
                           <h3 className={styles.linkTitle}>{link.title}</h3>

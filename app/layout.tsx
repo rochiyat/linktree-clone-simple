@@ -16,10 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Tambahin favicon */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
@@ -28,7 +29,7 @@ html {
 }
         `}</style>
       </head>
-      <body>
+      <body suppressHydrationWarning className="antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>
