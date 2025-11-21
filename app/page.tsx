@@ -127,13 +127,10 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Link
-              href="https://github.com/rochiyat/linktree-clone-simple"
-              target="_blank"
-            >
+            <Link href="/login">
               <Button size="lg" variant="outline" className="text-lg px-8">
                 <Github className="w-5 h-5 mr-2" />
-                View on GitHub
+                Sign In
               </Button>
             </Link>
           </div>
@@ -318,24 +315,14 @@ export default function HomePage() {
               <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <a
-                    href="https://github.com/rochiyat/linktree-clone-simple"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-purple-600"
-                  >
+                  <Link href="/register" className="hover:text-purple-600">
                     Documentation
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/rochiyat/linktree-clone-simple"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-purple-600"
-                  >
-                    GitHub
-                  </a>
+                  <Link href="/login" className="hover:text-purple-600">
+                    Support
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -343,24 +330,14 @@ export default function HomePage() {
               <h4 className="font-semibold mb-4">Connect</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <a
-                    href="https://github.com/rochiyat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-purple-600"
-                  >
-                    GitHub
-                  </a>
+                  <Link href="/register" className="hover:text-purple-600">
+                    Community
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://linkedin.com/in/rochiyat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-purple-600"
-                  >
-                    LinkedIn
-                  </a>
+                  <Link href="/login" className="hover:text-purple-600">
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -368,14 +345,9 @@ export default function HomePage() {
           <div className="border-t pt-8 text-center text-sm text-gray-600">
             <p>
               Made with ❤️ by{' '}
-              <a
-                href="https://github.com/rochiyat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-purple-600 hover:underline"
-              >
+              <Link href="/" className="text-purple-600 hover:underline">
                 Rochiyat
-              </a>
+              </Link>
             </p>
             <p className="mt-2">© 2024 Linktree Clone. Open Source & Free.</p>
           </div>
